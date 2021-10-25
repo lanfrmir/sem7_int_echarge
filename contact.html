@@ -12,7 +12,7 @@
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sb-nav-fixed">      
 		<!-- Navbar top -->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand ps-3" href="index.html">
@@ -89,54 +89,36 @@
 
 			<!-- Content -->
             <div id="layoutSidenav_content">
-				<div class="container-fluid px-4">
-                    <h1 class="mt-4"><span class="text-warning">E</span>-Charge</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">About Us</li>
-                    </ol>
-                </div>
 
-                <!-- Showcase -->
-                <section class="text-dark ms-5 text-center text-sm-start">
-                    <p class="lead my-4">
-                        We are the three best Students of the School of Management and Law in Winterthur, Switzerland.<br />
-                        Our Project is to provide real time information (Position, Availability, State, ecc) about the e-charging-stations positioned in Switzerland.<br />
-                        Our Source is the Swiss BFE, which keeps the data up to date in real time.
-                    </p>
-                </section>
+				<!-- Contact & Map -->
+					<div class="container-fluid px-4">
+						<h1 class="mt-4"><span class="text-warning">E</span>-Charge</h1>
+						<ol class="breadcrumb mb-4">
+							<li class="breadcrumb-item active">Contact Information</li>
+						</ol>						
+						<div class="col-sm text-center">
+							<ul class="list-group list-group-flush lead">
+								<li class="list-group-item">
+									<span class="fw-bold">Main Location:</span> St.-Georgen-Platz 2, 8401 Winterthur
+								</li>
+								<li class="list-group-item">
+									<span class="fw-bold">School:</span> ZHAW School of Management and Law
+								</li>
+								<li class="list-group-item">
+									<span class="fw-bold">Students:</span> Mirko Lanfranchi, Mehmet Pekerman, Ephraim Izgi
+								</li>
+								<li class="list-group-item">
+									<span class="fw-bold">Supervisor:</span> Dr. Mario Gellrich
+								</li>
+							</ul>
+						</div>
+						<div class="container mt-2">
+							<div class="text-center">
+								<div id="map"></div>
+							</div>
+						</div>
+					</div>
 
-                <!-- Boxes -->
-                <section class="p-5">
-                    <div class="row text-center g-5">
-                        <div class="col-md">
-                            <div class="card bg-dark bg-gradient text-light">
-                                <div class="card-body text-center">
-                                    <img src="img/profil_lanfrmir.jpg" alt="profil_lanfrmir.jpg" class="rounded-circle border border-light w-50 mt-3 mb-2">
-                                    <h3 class="card-title">Mirko Lanfranchi</h3>
-                                    <p class="card-text mb-3">The best Student in the World!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="card bg-dark bg-gradient text-light">
-                                <div class="card-body text-center">
-                                    <img src="img/profil_pekermeh.png" alt="profil_pekermeh.png" class="rounded-circle border border-light w-50 mt-3 mb-2">
-                                    <h3 class="card-title">Mehmet Pekerman</h3>
-                                    <p class="card-text mb-3">The second best Student in the World!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="card bg-dark bg-gradient text-light">
-                                <div class="card-body text-center">
-                                    <img src="img/profil_izgieph.png" alt="profil_izgieph.png" class="rounded-circle border border-light w-50 mt-3 mb-2">
-                                    <h3 class="card-title">Ephraim Izgi</h3>
-                                    <p class="card-text mb-3">The third best Student in the World!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
 				<!-- Footer -->
                 <footer class="py-4 bg-light mt-auto">
@@ -155,5 +137,17 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+
+		<!-- Script for Mapbox -->
+		<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+		<script>
+			mapboxgl.accessToken = 'pk.eyJ1IjoibWlya29vOTQiLCJhIjoiY2t2M3RqbTZsMTN3azJvb3YyaTFjMnFkMyJ9.iYTifUZSCWsQpjS5IJX57w';
+			var map = new mapboxgl.Map({
+				container: 'map',
+				style: 'mapbox://styles/mapbox/streets-v11',
+				center: [8.726130, 47.502220],
+				zoom: 16.5,
+			});
+		</script>
     </body>
 </html>
