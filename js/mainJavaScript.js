@@ -155,10 +155,7 @@ function renderAccessibilityChart(placesMap) {
             type: 'column'
         },
         title: {
-            text: 'World\'s largest cities per 2017'
-        },
-        subtitle: {
-            text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+            text: ''
         },
         xAxis: {
             type: 'category',
