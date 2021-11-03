@@ -61,8 +61,8 @@ async function renderUsers() {
     const availabilityTable = document.getElementById('availabilityTable');
     availabilityTable.innerHTML = table;
 
-    const totalStations = document.getElementById('totalStations');
-    totalStations.innerHTML = total;
+    // const totalStations = document.getElementById('totalStations');
+    // totalStations.innerHTML = total;
 
     if (availabilityTable) {
         new simpleDatatables.DataTable(availabilityTable, { searchable: false, perPageSelect: false });

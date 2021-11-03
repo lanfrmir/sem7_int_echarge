@@ -8,193 +8,70 @@ async function getData() {
     }
 }
 
-async function renderUsers() {
+async function renderCharts() {
     let data = await getData();
-    let countFreeAccess = 0;
-    let countPayingAccess = 0;
-    let countRestricted = 0;
-    let countOthers = 0;
-    let countTotal = 0;
     let placesMap = [];
-    let tableRowData = [];
+    let cityTableRows = [];
+    let allPlugs = [];
+    let allAccessibility = [];
+    let allPlaces = [];
 
     console.log(data.EVSEData);
 
     for (var i = 0; i < data.EVSEData.length; i++) {
         var place = data.EVSEData[i].OperatorName;
         var record = data.EVSEData[i].EVSEDataRecord;
+        var operatorName = data.EVSEData[i].OperatorName;
         let countPerPlace = 0;
 
         for (var j = 0; j < record.length; j++) {
             countPerPlace += 1;
-            countTotal += 1;
-            if (record[j].Accessibility == 'Free publicly accessible') {
-                countFreeAccess += 1;
-            } else if (record[j].Accessibility == 'Paying publicly accessible') {
-                countPayingAccess += 1;
-            } else if (record[j].Accessibility == 'Restricted access') {
-                countRestricted += 1;
-            } else {
-                countOthers += 1;
-            }
+            allAccessibility.push(record[j].Accessibility);
+            allPlaces.push(operatorName);
 
+            // Creating row for cities table
             let address = record[j].Address;
             let country = address.Country;
             let city = address.City;
             let postalCode = address.PostalCode;
             let street = address.Street;
             let houseNo = address.HouseNum;
+            cityTableRows.push(`<tr><td>${country}</td><td>${city}</td><td>${postalCode}</td><td>${street} ${houseNo}</td></tr>`)
 
-            tableRowData.push(`<tr><td>${country}</td><td>${city}</td><td>${postalCode}</td><td>${street} ${houseNo}</td></tr>`)
+            // Plug types
+            var plugs = record[j].Plugs;
+            for (var m = 0; m < plugs.length; m++) {
+                allPlugs.push(plugs[m]);
+            }
         }
         placesMap.push([place, countPerPlace]);
-    }
-    let percentageFreeAccess = countFreeAccess / countTotal * 100;
-    let percentagePayingAccess = countPayingAccess / countTotal * 100;
-    let percentageRestricted = countRestricted / countTotal * 100;
-    let percentageOthers = countOthers / countTotal * 100;
 
-
-
-    let myBigString = '';
-    for (var k = 0; k < tableRowData.length; k++) {
-        myBigString += tableRowData[k];
     }
 
+    // Tables
+    renderCitiesTable(cityTableRows);
+    renderKeyNumbersTable(allAccessibility.length, allPlugs);
 
+    // Charts
+    renderProviderChart(createMapForChart(allPlaces));
+    renderAccessibilityChart(createMapForChart(allAccessibility));
+    renderPlugsChart(createMapForChart(allPlugs));
+}
 
-    var table = `<table id="datatablesSimple">
-                    <thead>
-                        <tr>
-                            <th>Country</th>
-                            <th>City</th>
-                            <th>Postal code</th>
-                            <th>Street & no</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Country</th>
-                            <th>City</th>
-                            <th>Postal code</th>
-                            <th>Street & no</th>
-                        </tr>
-                    </tfoot>
-                    <tbod>${myBigString}</tbod>
-                </table>`;
+renderCharts();
 
-    const datatablesSimple = document.getElementById('datatablesSimple');
-    datatablesSimple.innerHTML = table;
-    document.getElementById('removable').remove(); //remove loading
+function createMapForChart(allEntries) {
+    let mapWithCount = {};
+    allEntries.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; });
 
-    if (datatablesSimple) {
-        new simpleDatatables.DataTable(datatablesSimple);
+    console.log(mapWithCount);
+    let listWithKeyValue = [];
+    for (const [key, value] of Object.entries(mapWithCount)) {
+        let y = value / allEntries.length * 100;
+        listWithKeyValue.push({
+            name: key,
+            y: y,
+        });
     }
-
-    renderAccessibilityChart(placesMap);
-    renderBarChart(percentageFreeAccess, percentagePayingAccess, percentageRestricted, percentageOthers);
+    return listWithKeyValue;
 }
-
-renderUsers();
-
-
-function renderBarChart(percentageFreeAccess, percentagePayingAccess, percentageRestricted, percentageOthers) {
-    Highcharts.chart('accessibility', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: ''
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        accessibility: {
-            point: {
-                valueSuffix: '%'
-            }
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                }
-            }
-        },
-        series: [{
-            name: 'Accessibility',
-            colorByPoint: true,
-            data: [{
-                name: 'Free publicly accessible',
-                y: percentageFreeAccess,
-                sliced: true,
-                selected: true
-            }, {
-                name: 'Paying publicly accessible',
-                y: percentagePayingAccess
-            }, {
-                name: 'Restricted access',
-                y: percentageRestricted
-            }, {
-                name: 'Others',
-                y: percentageOthers
-            }]
-        }]
-    });
-}
-
-function renderAccessibilityChart(placesMap) {
-    Highcharts.chart('container2', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: ''
-        },
-        xAxis: {
-            type: 'category',
-            labels: {
-                rotation: -45,
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Population (millions)'
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        tooltip: {
-            pointFormat: 'Population in 2017: <b>{point.y:.1f} millions</b>'
-        },
-        series: [{
-            name: 'Population',
-            data: placesMap,
-            dataLabels: {
-                enabled: true,
-                rotation: -90,
-                color: '#FFFFFF',
-                align: 'right',
-                format: '{point.y:.1f}',
-                y: 10,
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
-            }
-        }]
-    });
-}
-
