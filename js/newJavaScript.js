@@ -8,9 +8,8 @@ async function getData() {
     }
 }
 
-async function renderUsers() {
+async function renderTable() {
     let data = await getData();
-    console.log(data);
     let available = 0;
     let outOfService = 0;
     let occupied = 0;
@@ -39,35 +38,7 @@ async function renderUsers() {
     }
 
 
-    var table = `<table id="availabilityTable">
-                    <thead>
-                        <tr>
-                            <th>Available</th>
-                            <th>Occupied</th>
-                            <th>Out of Service</th>
-                            <th>Unknown</th>
-                        </tr>
-                    </thead>
-                    <tbod>
-                        <tr>
-                            <td>${available}</td>
-                            <td>${occupied}</td>
-                            <td>${outOfService}</td>
-                            <td>${unknown}</td>
-                        </tr>
-                    </tbod>
-                </table>`;
-
-    const availabilityTable = document.getElementById('availabilityTable');
-    availabilityTable.innerHTML = table;
-
-    // const totalStations = document.getElementById('totalStations');
-    // totalStations.innerHTML = total;
-
-    if (availabilityTable) {
-        new simpleDatatables.DataTable(availabilityTable, { searchable: false, perPageSelect: false });
-    }
-
+    renderAvailabilityTable(available, occupied, outOfService, unknown);
 }
 
-renderUsers();
+renderTable();
