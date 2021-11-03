@@ -10,35 +10,17 @@ async function getData() {
 
 async function renderTable() {
     let data = await getData();
-    let available = 0;
-    let outOfService = 0;
-    let occupied = 0;
-    let unknown = 0;
-    let total = 0;
+    let allAvailibilities = [];
 
     for (let i = 0; i < data.features.length; i++) {
         const availability = data.features[i].properties.Availability;
-        total++;
-        switch (availability) {
-            case 'Available':
-                available++;
-                break;
-            case 'OutOfService':
-                outOfService++;
-                break;
-            case 'Occupied':
-                occupied++;
-                break;
-            case 'Unknown':
-                unknown++;
-                break;
-            default:
-                break;
-        }
+        allAvailibilities.push(availability);
     }
 
+    let mapWithCount = {};
+    allAvailibilities.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; })
 
-    renderAvailabilityTable(available, occupied, outOfService, unknown);
+    renderAvailabilityTable(mapWithCount['Available'], mapWithCount['Occupied'], mapWithCount['OutOfService'], mapWithCount['Unknown']);
 }
 
 renderTable();
