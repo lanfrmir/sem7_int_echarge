@@ -1,5 +1,5 @@
 async function getData() {
-    let url = 'https://data.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/ch.bfe.ladestellen-elektromobilitaet_de.json';
+    let url = 'https://data.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/status/oicp/ch.bfe.ladestellen-elektromobilitaet.json';
     try {
         let res = await fetch(url);
         return await res.json();
@@ -12,9 +12,11 @@ async function renderTable() {
     let data = await getData();
     let allAvailibilities = [];
 
-    for (let i = 0; i < data.features.length; i++) {
-        const availability = data.features[i].properties.Availability;
-        allAvailibilities.push(availability);
+    for (let i = 0; i < data.EVSEStatuses.length; i++) {
+        for (let k = 0; k < data.EVSEStatuses[i].EVSEStatusRecord.length; k++) {
+            const availability = data.EVSEStatuses[i].EVSEStatusRecord[k].EVSEStatus;
+            allAvailibilities.push(availability);
+        }
     }
 
     let mapWithCount = {};

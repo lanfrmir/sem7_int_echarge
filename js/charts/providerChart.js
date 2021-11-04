@@ -11,7 +11,7 @@ function renderProviderChart(placesMap) {
             text: ''
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '{series.name}: <b>{point.valueAbsolute}</b>'
         },
         accessibility: {
             point: {

@@ -10,6 +10,7 @@ function renderCitiesTable(cityTableRows) {
                             <th>City</th>
                             <th>Postal code</th>
                             <th>Street & no</th>
+                            <th>Coordinates</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -18,6 +19,7 @@ function renderCitiesTable(cityTableRows) {
                             <th>City</th>
                             <th>Postal code</th>
                             <th>Street & no</th>
+                            <th>Coordinates</th>
                         </tr>
                     </tfoot>
                     <tbod>${allCities}</tbod>

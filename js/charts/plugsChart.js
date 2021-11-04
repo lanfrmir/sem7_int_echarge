@@ -10,7 +10,7 @@ function renderPlugsChart(plugs) {
             text: ''
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '{series.name}: <b>{point.valueAbsolute}</b>'
         },
         accessibility: {
             point: {
@@ -28,7 +28,7 @@ function renderPlugsChart(plugs) {
             }
         },
         series: [{
-            name: 'Accessibility',
+            name: 'Count',
             colorByPoint: true,
             data: plugs
         }]

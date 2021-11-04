@@ -1,5 +1,14 @@
-async function getData() {
-    let url = 'https://upload.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/oicp/ch.bfe.ladestellen-elektromobilitaet.json';
+async function getData(url) {
+    // let url = 'https://upload.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/oicp/ch.bfe.ladestellen-elektromobilitaet.json';
+    try {
+        let res = await fetch(url);
+        return await res.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+async function getPlzData(url) {
+    // let url = 'https://upload.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/oicp/ch.bfe.ladestellen-elektromobilitaet.json';
     try {
         let res = await fetch(url);
         return await res.json();
@@ -9,7 +18,7 @@ async function getData() {
 }
 
 async function renderCharts() {
-    let data = await getData();
+    let data = await getData('https://upload.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/oicp/ch.bfe.ladestellen-elektromobilitaet.json');
     let placesMap = [];
     let cityTableRows = [];
     let allPlugs = [];
@@ -36,7 +45,8 @@ async function renderCharts() {
             let postalCode = address.PostalCode;
             let street = address.Street;
             let houseNo = address.HouseNum;
-            cityTableRows.push(`<tr><td>${country}</td><td>${city}</td><td>${postalCode}</td><td>${street} ${houseNo}</td></tr>`)
+            let coordinates = record[j].GeoCoordinates.Google;
+            cityTableRows.push(`<tr><td>${country}</td><td>${city}</td><td>${postalCode}</td><td>${street} ${houseNo}</td><td id="coordinates" onclick="openMap('${coordinates}')"><button type="button" class="btn btn-link">open in Google Maps</button></td></tr>`)
 
             // Plug types
             var plugs = record[j].Plugs;
@@ -60,6 +70,12 @@ async function renderCharts() {
 
 renderCharts();
 
+function openMap(value) {
+    let coordinates = value.split(' ');
+    url = `https://maps.google.com/?q=${coordinates[0]},${coordinates[1]}&ll=${coordinates[0]},${coordinates[1]},12z=14`;
+    window.open(url, '_blank');
+}
+
 function createMapForChart(allEntries) {
     let mapWithCount = {};
     allEntries.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; });
@@ -71,6 +87,7 @@ function createMapForChart(allEntries) {
         listWithKeyValue.push({
             name: key,
             y: y,
+            valueAbsolute: value,
         });
     }
     return listWithKeyValue;
