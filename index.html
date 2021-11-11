@@ -17,6 +17,10 @@
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/modules/export-data.js"></script>
 	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+	<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/maps/modules/map.js"></script>
+	<script src="https://code.highcharts.com/mapdata/countries/ch/ch-all.js"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -106,13 +110,26 @@
 				<ol class="breadcrumb mb-4">
 					<li class="breadcrumb-item active">Overview</li>
 				</ol>
+
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="card mb-4">
+							<div class="card-header">
+								<i class="fas fa-chart-area me-1"></i>
+								Swissmap
+							</div>
+							<div id="swissMap"><img src="assets/loading.gif" alt="Loading" width="50" /></div>
+						</div>
+					</div>
+				</div>
 				<div class="card mb-4">
 					<div class="card-header">
 						<i class="fas fa-table me-1"></i>
 						Total electric stations
 					</div>
 					<div class="card-body">
-						<table id="keyNumbers"><img id="keyNumbersRemovable" src="assets/loading.gif" alt="Loading" width="50" /></table>
+						<table id="keyNumbers"><img id="keyNumbersRemovable" src="assets/loading.gif" alt="Loading"
+								width="50" /></table>
 					</div>
 				</div>
 				<div class="card mb-4">
@@ -161,7 +178,8 @@
 						All stations in Switzerland and in neighbour countries
 					</div>
 					<div class="card-body">
-						<table id="citiesTable"><img id="removable" src="assets/loading.gif" alt="Loading" width="50" /></table>
+						<table id="citiesTable"><img id="removable" src="assets/loading.gif" alt="Loading" width="50" />
+						</table>
 					</div>
 				</div>
 			</div>
@@ -186,12 +204,14 @@
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/postalCodes.js"></script>
 	<script src="js/tables/cities.js"></script>
 	<script src="js/tables/keyNumbers.js"></script>
 	<script src="js/tables/availability.js"></script>
 	<script src="js/charts/accessibilityChart.js"></script>
 	<script src="js/charts/providerChart.js"></script>
 	<script src="js/charts/plugsChart.js"></script>
+	<script src="js/swissMap.js"></script>
 	<script src="js/mainJavaScript.js"></script>
 	<script src="js/newJavaScript.js"></script>
 </body>

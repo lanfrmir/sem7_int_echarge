@@ -7,15 +7,6 @@ async function getData(url) {
         console.log(error);
     }
 }
-async function getPlzData(url) {
-    // let url = 'https://upload.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/oicp/ch.bfe.ladestellen-elektromobilitaet.json';
-    try {
-        let res = await fetch(url);
-        return await res.json();
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 async function renderCharts() {
     let data = await getData('https://upload.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/oicp/ch.bfe.ladestellen-elektromobilitaet.json');
@@ -24,6 +15,7 @@ async function renderCharts() {
     let allPlugs = [];
     let allAccessibility = [];
     let allPlaces = [];
+    let allPostalCodes = [];
 
     console.log(data.EVSEData);
 
@@ -46,6 +38,7 @@ async function renderCharts() {
             let street = address.Street;
             let houseNo = address.HouseNum;
             let coordinates = record[j].GeoCoordinates.Google;
+            allPostalCodes.push(postalCode);
             cityTableRows.push(`<tr><td>${country}</td><td>${city}</td><td>${postalCode}</td><td>${street} ${houseNo}</td><td id="coordinates" onclick="openMap('${coordinates}')"><button type="button" class="btn btn-link">open in Google Maps</button></td></tr>`)
 
             // Plug types
@@ -57,6 +50,8 @@ async function renderCharts() {
         placesMap.push([place, countPerPlace]);
 
     }
+
+    renderMap(allPostalCodes);
 
     // Tables
     renderCitiesTable(cityTableRows);
