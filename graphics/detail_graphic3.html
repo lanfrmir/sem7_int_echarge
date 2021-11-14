@@ -8,15 +8,15 @@
         <meta name="author" content="Int_Group11" />
         <title>ECharge</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/style.css" rel="stylesheet" />
-		<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+        <link href="../css/style.css" rel="stylesheet" />
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="sb-nav-fixed">      
+    <body class="sb-nav-fixed">
 		<!-- Navbar top -->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand ps-3" href="index.html">
-                <img src="img/logo32.png" alt="logo32.png" class="w-25">
+            <a class="navbar-brand ps-3" href="../index.html">
+                <img src="../img/logo32.png" alt="logo32.png" class="w-25">
                 <span class="text-warning">E</span>Charge
             </a>
 			<!-- Sidebar Toggle-->
@@ -30,7 +30,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Home</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="../index.html">
                                 <div class="sb-nav-link-icon">
 									<i class="fas fa-tachometer-alt"></i>
 								</div>
@@ -48,10 +48,10 @@
                             </a>
                             <div class="collapse" id="collapseGraphics" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a href="graphics/detail_graphic1.html" class="nav-link">All Swiss Chargers</a>
-                                    <a href="graphics/detail_graphic2.html" class="nav-link">Providers</a>
-                                    <a href="graphics/detail_graphic3.html" class="nav-link">Accessibility</a>
-                                    <a href="graphics/detail_graphic4.html" class="nav-link">Consumptions</a>
+                                    <a href="detail_graphic1.html" class="nav-link">All Swiss Chargers</a>
+                                    <a href="detail_graphic2.html" class="nav-link">Providers</a>
+                                    <a href="detail_graphic3.html" class="nav-link">Accessibility</a>
+                                    <a href="detail_graphic4.html" class="nav-link">Consumptions</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTables" aria-expanded="false" aria-controls="collapsePages">
@@ -65,18 +65,18 @@
                             </a>
 							<div class="collapse" id="collapseTables" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a href="tables/detail_table1.html" class="nav-link">All Swiss Chargers</a>
-                                    <a href="tables/detail_table2.html" class="nav-link">Statistics</a>
+                                    <a href="../tables/detail_table1.html" class="nav-link">All Swiss Chargers</a>
+                                    <a href="../tables/detail_table2.html" class="nav-link">Statistics</a>
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">E-Charge</div>
-                            <a class="nav-link" href="aboutus.html">
+                            <a class="nav-link" href="../aboutus.html">
                                 <div class="sb-nav-link-icon">
 									<i class="far fa-building"></i>
 								</div>
                                 About Us
                             </a>
-                            <a class="nav-link" href="contact.html">
+                            <a class="nav-link" href="../contact.html">
                                 <div class="sb-nav-link-icon">
 									<i class="far fa-address-card"></i>
 									</div>
@@ -89,36 +89,22 @@
 
 			<!-- Content -->
             <div id="layoutSidenav_content">
+				<div class="container-fluid px-4">
+                    <h1 class="mt-4">Graphics</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Accessibility</li>
+                    </ol>
+                </div>
 
-				<!-- Contact & Map -->
-					<div class="container-fluid px-4">
-						<h1 class="mt-4"><span class="text-warning">E</span>-Charge</h1>
-						<ol class="breadcrumb mb-4">
-							<li class="breadcrumb-item active">Contact Information</li>
-						</ol>						
-						<div class="col-sm text-center">
-							<ul class="list-group list-group-flush lead">
-								<li class="list-group-item">
-									<span class="fw-bold">Main Location:</span> St.-Georgen-Platz 2, 8401 Winterthur
-								</li>
-								<li class="list-group-item">
-									<span class="fw-bold">School:</span> ZHAW School of Management and Law
-								</li>
-								<li class="list-group-item">
-									<span class="fw-bold">Students:</span> Mirko Lanfranchi, Mehmet Pekerman, Ephraim Izgi
-								</li>
-								<li class="list-group-item">
-									<span class="fw-bold">Supervisor:</span> Dr. Mario Gellrich
-								</li>
-							</ul>
-						</div>
-						<div class="container mt-2">
-							<div class="text-center">
-								<div id="map"></div>
-							</div>
-						</div>
-					</div>
+                <!-- Showcase -->
+                <section class="text-dark ms-5 text-center text-sm-start">
 
+                </section>
+
+                <!-- Boxes -->
+                <section class="p-5">
+
+                </section>
 
 				<!-- Footer -->
                 <footer class="py-4 bg-light mt-auto">
@@ -131,23 +117,11 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="../js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-
-		<!-- Script for Mapbox -->
-		<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-		<script>
-			mapboxgl.accessToken = 'pk.eyJ1IjoibWlya29vOTQiLCJhIjoiY2t2M3RqbTZsMTN3azJvb3YyaTFjMnFkMyJ9.iYTifUZSCWsQpjS5IJX57w';
-			var map = new mapboxgl.Map({
-				container: 'map',
-				style: 'mapbox://styles/mapbox/streets-v11',
-				center: [8.726130, 47.502220],
-				zoom: 16.5,
-			});
-		</script>
+        <script src="../js/datatables-simple-demo.js"></script>
     </body>
 </html>
