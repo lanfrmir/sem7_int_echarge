@@ -1,5 +1,5 @@
 async function renderPlugs() {
-    var dataMap = await renderCharts();
+    var dataMap = await getData();
     renderPlugsChart(createMapForChart(dataMap.allPlugs));
 }
 

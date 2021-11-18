@@ -1,4 +1,4 @@
-async function getData(url) {
+async function fetchData(url) {
     try {
         let res = await fetch(url);
         return await res.json();
@@ -7,8 +7,8 @@ async function getData(url) {
     }
 }
 
-async function renderCharts() {
-    let data = await getData('https://upload.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/oicp/ch.bfe.ladestellen-elektromobilitaet.json');
+async function getData() {
+    let data = await fetchData('https://upload.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/oicp/ch.bfe.ladestellen-elektromobilitaet.json');
     let placesMap = [];
     let cityTableRows = [];
     let allPlugs = [];
@@ -55,39 +55,10 @@ async function renderCharts() {
         'allPlugs': allPlugs,
         'allPlaces': allPlaces,
     }
-
-    // Map
-    renderMap(allPostalCodes);
-
-    // Tables
-    renderCitiesTable(cityTableRows);
-    renderKeyNumbersTable(allAccessibility.length, allPlugs);
-
-    // Charts
-    renderProviderChart(createMapForChart(allPlaces));
-    renderAccessibilityChart(createMapForChart(allAccessibility));
-    renderPlugsChart(createMapForChart(allPlugs));
 }
 
 function openMap(value) {
     let coordinates = value.split(' ');
     url = `https://maps.google.com/?q=${coordinates[0]},${coordinates[1]}&ll=${coordinates[0]},${coordinates[1]},12z=14`;
     window.open(url, '_blank');
-}
-
-function createMapForChart(allEntries) {
-    let mapWithCount = {};
-    allEntries.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; });
-
-    console.log(mapWithCount);
-    let listWithKeyValue = [];
-    for (const [key, value] of Object.entries(mapWithCount)) {
-        let y = value / allEntries.length * 100;
-        listWithKeyValue.push({
-            name: key,
-            y: y,
-            valueAbsolute: value,
-        });
-    }
-    return listWithKeyValue;
 }

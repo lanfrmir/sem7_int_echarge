@@ -1,5 +1,5 @@
 async function renderCities() {
-    var dataMap = await renderCharts();
+    var dataMap = await getData();
     console.log(dataMap);
     renderCitiesTable(dataMap.cityTableRows);
 }

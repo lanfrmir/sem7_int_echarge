@@ -1,5 +1,5 @@
 async function renderKeyNumbers() {
-    var dataMap = await renderCharts();
+    var dataMap = await getData();
     renderKeyNumbersTable(dataMap.allAccessibility.length, dataMap.allPlugs);
 }
 

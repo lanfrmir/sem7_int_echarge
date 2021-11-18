@@ -1,5 +1,5 @@
 async function renderProvider() {
-    var dataMap = await renderCharts();
+    var dataMap = await getData();
     renderProviderChart(createMapForChart(dataMap.allPlaces));
 }
 

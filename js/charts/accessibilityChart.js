@@ -1,5 +1,5 @@
 async function renderAccessibility() {
-    var dataMap = await renderCharts();
+    var dataMap = await getData();
     renderAccessibilityChart(createMapForChart(dataMap.allAccessibility));
 }
 

@@ -1,4 +1,4 @@
-async function getData() {
+async function fetchData() {
     let url = 'https://data.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/status/oicp/ch.bfe.ladestellen-elektromobilitaet.json';
     try {
         let res = await fetch(url);
@@ -9,7 +9,7 @@ async function getData() {
 }
 
 async function renderTable() {
-    let data = await getData();
+    let data = await fetchData();
     let allAvailibilities = [];
 
     for (let i = 0; i < data.EVSEStatuses.length; i++) {

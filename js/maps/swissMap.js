@@ -1,5 +1,5 @@
 async function renderMap() {
-    var dataMap = await renderCharts();
+    var dataMap = await getData();
     renderMapChart(dataMap.allPostalCodes);
 }
 
