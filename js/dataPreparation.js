@@ -1,3 +1,5 @@
+
+// Fetch and prepare data
 async function fetchData(url) {
     try {
         let res = await fetch(url);
@@ -57,29 +59,6 @@ async function getData() {
     }
 }
 
-function createMapForChart(allEntries) {
-    let mapWithCount = {};
-    allEntries.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; });
-
-    console.log(mapWithCount);
-    let listWithKeyValue = [];
-    for (const [key, value] of Object.entries(mapWithCount)) {
-        let y = value / allEntries.length * 100;
-        listWithKeyValue.push({
-            name: key,
-            y: y,
-            valueAbsolute: value,
-        });
-    }
-    return listWithKeyValue;
-}
-
-function openMap(value) {
-    let coordinates = value.split(' ');
-    url = `https://maps.google.com/?q=${coordinates[0]},${coordinates[1]}&ll=${coordinates[0]},${coordinates[1]},12z=14`;
-    window.open(url, '_blank');
-}
-
 async function fetchTableData() {
     let url = 'https://data.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/status/oicp/ch.bfe.ladestellen-elektromobilitaet.json';
     try {
@@ -105,4 +84,28 @@ async function getTableData() {
     allAvailibilities.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; })
 
     return mapWithCount;
+}
+
+// Helper functions
+function createMapForChart(allEntries) {
+    let mapWithCount = {};
+    allEntries.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; });
+
+    console.log(mapWithCount);
+    let listWithKeyValue = [];
+    for (const [key, value] of Object.entries(mapWithCount)) {
+        let y = value / allEntries.length * 100;
+        listWithKeyValue.push({
+            name: key,
+            y: y,
+            valueAbsolute: value,
+        });
+    }
+    return listWithKeyValue;
+}
+
+function openMap(value) {
+    let coordinates = value.split(' ');
+    url = `https://maps.google.com/?q=${coordinates[0]},${coordinates[1]}&ll=${coordinates[0]},${coordinates[1]},12z=14`;
+    window.open(url, '_blank');
 }
