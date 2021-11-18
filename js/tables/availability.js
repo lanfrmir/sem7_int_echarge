@@ -1,3 +1,8 @@
+async function renderAvailability() {
+    var dataMap = await getTableData();
+    renderAvailabilityTable(dataMap.Available, dataMap.Occupied, dataMap.OutOfService, dataMap.Unknown);
+}
+
 function renderAvailabilityTable(available, occupied, outOfService, unknown) {
     var availability = `<table id="availabilityTable">
                     <thead>
@@ -25,3 +30,5 @@ function renderAvailabilityTable(available, occupied, outOfService, unknown) {
         new simpleDatatables.DataTable(availabilityTable, { searchable: false, perPageSelect: false });
     }
 }
+
+renderAvailability();
