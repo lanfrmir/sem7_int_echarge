@@ -1,3 +1,8 @@
+async function renderKeyNumbers() {
+    var dataMap = await renderCharts();
+    renderKeyNumbersTable(dataMap.allAccessibility.length, dataMap.allPlugs);
+}
+
 function renderKeyNumbersTable(countTotal, allPlugs) {
     var keyNumbers = `<table id="keyNumbers">
                         <thead>
@@ -23,3 +28,5 @@ function renderKeyNumbersTable(countTotal, allPlugs) {
         new simpleDatatables.DataTable(keyNumbersTable, { searchable: false, perPageSelect: false });
     }
 }
+
+renderKeyNumbers();

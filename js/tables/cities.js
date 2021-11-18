@@ -1,3 +1,9 @@
+async function renderCities() {
+    var dataMap = await renderCharts();
+    console.log(dataMap);
+    renderCitiesTable(dataMap.cityTableRows);
+}
+
 function renderCitiesTable(cityTableRows) {
     let allCities = '';
     for (var k = 0; k < cityTableRows.length; k++) {
@@ -32,3 +38,5 @@ function renderCitiesTable(cityTableRows) {
         new simpleDatatables.DataTable(datatableCities);
     }
 }
+
+renderCities();

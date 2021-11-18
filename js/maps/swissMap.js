@@ -1,4 +1,9 @@
-function renderMap(values) {
+async function renderMap() {
+    var dataMap = await renderCharts();
+    renderMapChart(dataMap.allPostalCodes);
+}
+
+function renderMapChart(values) {
     let allCantons = [];
     for (let i = 0; i < values.length; i++) {
         const element = values[i];
@@ -54,8 +59,6 @@ function renderMap(values) {
 
 }
 
-
-
 function createMapForChart(allEntries) {
     let mapWithCount = {};
     allEntries.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; });
@@ -72,3 +75,5 @@ function createMapForChart(allEntries) {
     }
     return listWithKeyValue;
 }
+
+renderMap();

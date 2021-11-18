@@ -1,3 +1,8 @@
+async function renderPlugs() {
+    var dataMap = await renderCharts();
+    renderPlugsChart(createMapForChart(dataMap.allPlugs));
+}
+
 function renderPlugsChart(plugs) {
     Highcharts.chart('plugsChart', {
         chart: {
@@ -34,3 +39,5 @@ function renderPlugsChart(plugs) {
         }]
     });
 }
+
+renderPlugs();

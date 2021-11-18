@@ -1,6 +1,10 @@
+async function renderProvider() {
+    var dataMap = await renderCharts();
+    renderProviderChart(createMapForChart(dataMap.allPlaces));
+}
 
 function renderProviderChart(placesMap) {
-    Highcharts.chart('container2', {
+    Highcharts.chart('providerChart', {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -35,3 +39,5 @@ function renderProviderChart(placesMap) {
         }]
     });
 }
+
+renderProvider();

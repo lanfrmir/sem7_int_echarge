@@ -16,8 +16,6 @@ async function renderCharts() {
     let allPlaces = [];
     let allPostalCodes = [];
 
-    console.log(data.EVSEData);
-
     for (var i = 0; i < data.EVSEData.length; i++) {
         var place = data.EVSEData[i].OperatorName;
         var record = data.EVSEData[i].EVSEDataRecord;
@@ -50,6 +48,14 @@ async function renderCharts() {
 
     }
 
+    return {
+        'allPostalCodes': allPostalCodes,
+        'cityTableRows': cityTableRows,
+        'allAccessibility': allAccessibility,
+        'allPlugs': allPlugs,
+        'allPlaces': allPlaces,
+    }
+
     // Map
     renderMap(allPostalCodes);
 
@@ -62,8 +68,6 @@ async function renderCharts() {
     renderAccessibilityChart(createMapForChart(allAccessibility));
     renderPlugsChart(createMapForChart(allPlugs));
 }
-
-renderCharts();
 
 function openMap(value) {
     let coordinates = value.split(' ');

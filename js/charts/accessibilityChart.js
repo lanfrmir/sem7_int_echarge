@@ -1,3 +1,8 @@
+async function renderAccessibility() {
+    var dataMap = await renderCharts();
+    renderAccessibilityChart(createMapForChart(dataMap.allAccessibility));
+}
+
 function renderAccessibilityChart(accessibility) {
     Highcharts.chart('accessibility', {
         chart: {
@@ -35,3 +40,5 @@ function renderAccessibilityChart(accessibility) {
     });
 }
 
+
+renderAccessibility();
