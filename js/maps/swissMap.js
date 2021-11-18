@@ -59,21 +59,4 @@ function renderMapChart(values) {
 
 }
 
-function createMapForChart(allEntries) {
-    let mapWithCount = {};
-    allEntries.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; });
-
-    console.log(mapWithCount);
-    let listWithKeyValue = [];
-    for (const [key, value] of Object.entries(mapWithCount)) {
-        let y = value / allEntries.length * 100;
-        listWithKeyValue.push({
-            name: key,
-            y: y,
-            valueAbsolute: value,
-        });
-    }
-    return listWithKeyValue;
-}
-
 renderMap();
