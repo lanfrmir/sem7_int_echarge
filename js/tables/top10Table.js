@@ -21,14 +21,14 @@ function renderTopTenTable(cityTableRows) {
     var citiesTable = `<table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Country</th>
-                            <th>City</th>
+                            <th>Provider</th>
+                            <th>Number</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Country</th>
-                            <th>City</th>
+                            <th>Provider</th>
+                            <th>Number</th>
                         </tr>
                     </tfoot>
                     <tbod>${allCities}</tbod>

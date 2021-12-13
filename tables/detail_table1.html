@@ -94,7 +94,7 @@ Date: 16.12.2021
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a href="detail_table1.html" class="nav-link">All Swiss Chargers</a>
-                                <a href="detail_table2.html" class="nav-link">Statistics</a>
+                                <a href="detail_table2.html" class="nav-link">Availability</a>
                             </nav>
                         </div>
 
@@ -120,26 +120,22 @@ Date: 16.12.2021
         <!-- Content -->
         <div id="layoutSidenav_content">
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Tables</h1>
+                <h1 class="mt-4"><span class="text-warning">T</span>ables</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">All Swiss Chargers</li>
                 </ol>
-            </div>
 
-            <!-- Information on the top -->
-            <section class="text-dark ms-5 text-center text-sm-start">
-
-            </section>
-
-            <!-- Table -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    All stations in Switzerland and in neighbour countries
-                </div>
-                <div class="card-body">
-                    <table id="citiesTable"><img id="removable" src="../img/loading.gif" alt="Loading" width="50" />
-                    </table>
+                <!-- Text & Table -->
+                <p class="lead my-4 me-5">All existing charging stations with the respective address in Switzerland and in the neighboring countries.</p>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        All stations in Switzerland and in neighbour countries
+                    </div>
+                    <div class="card-body">
+                        <table id="citiesTable"><img id="removable" src="../img/loading.gif" alt="Loading" width="50" />
+                        </table>
+                    </div>
                 </div>
             </div>
 

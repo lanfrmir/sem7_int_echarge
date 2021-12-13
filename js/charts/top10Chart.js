@@ -50,5 +50,4 @@ function renderTop10Chart(accessibility) {
     });
 }
 
-
 renderTep10();

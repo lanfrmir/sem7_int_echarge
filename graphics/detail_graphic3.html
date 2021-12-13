@@ -39,6 +39,7 @@ Date: 16.12.2021
     <script src="../js/charts/accessibilityChart.js"></script>
 </head>
 <body class="sb-nav-fixed">
+
     <!-- Top-Navbar horizontal (dark) -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand ps-3" href="../index.html">
@@ -101,7 +102,7 @@ Date: 16.12.2021
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a href="../tables/detail_table1.html" class="nav-link">All Swiss Chargers</a>
-                                <a href="../tables/detail_table2.html" class="nav-link">Statistics</a>
+                                <a href="../tables/detail_table2.html" class="nav-link">Availability</a>
                             </nav>
                         </div>
 
@@ -127,26 +128,22 @@ Date: 16.12.2021
         <!-- Content -->
         <div id="layoutSidenav_content">
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Graphics</h1>
+                <h1 class="mt-4"><span class="text-warning">G</span>raphics</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">Accessibility</li>
                 </ol>
-            </div>
 
-            <!-- Information on the top -->
-            <section class="text-dark ms-5 text-center text-sm-start">
-
-            </section>
-
-            <!-- Graphic -->
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-bar me-1"></i>
-                            Accessibility
+                <!-- Text & Graphic -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="lead my-4 me-5">The pie chart below shows the accessibility of all charging stations.</p>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar me-1"></i>
+                                Accessibility
+                            </div>
+                            <div id="accessibility"><img src="../img/loading.gif" alt="Loading" width="50" /></div>
                         </div>
-                        <div id="accessibility"><img src="../img/loading.gif" alt="Loading" width="50" /></div>
                     </div>
                 </div>
             </div>
