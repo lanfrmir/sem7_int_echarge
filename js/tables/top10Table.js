@@ -1,9 +1,19 @@
-async function renderCities() {
+async function renderTopTen() {
     var dataMap = await getData();
-    renderCitiesTable(dataMap.cityTableRows);
+
+    var allmap = createMapForChart(dataMap.allPlaces);
+    var top = [];
+    for (let i = 0; i < allmap.length; i++) {
+        const element = allmap[i];
+        if (element.valueAbsolute > 100) {
+            top.push(`<tr><td>${element.name}</td><td>${element.valueAbsolute}</td></tr>`)
+        }
+        
+    }
+    renderTopTenTable(top);
 }
 
-function renderCitiesTable(cityTableRows) {
+function renderTopTenTable(cityTableRows) {
     let allCities = '';
     for (var k = 0; k < cityTableRows.length; k++) {
         allCities += cityTableRows[k];
@@ -13,24 +23,18 @@ function renderCitiesTable(cityTableRows) {
                         <tr>
                             <th>Country</th>
                             <th>City</th>
-                            <th>Postal code</th>
-                            <th>Street & no</th>
-                            <th>Coordinates</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Country</th>
                             <th>City</th>
-                            <th>Postal code</th>
-                            <th>Street & no</th>
-                            <th>Coordinates</th>
                         </tr>
                     </tfoot>
                     <tbod>${allCities}</tbod>
                 </table>`;
 
-    const datatableCities = document.getElementById('citiesTable');
+    const datatableCities = document.getElementById('topTen');
     datatableCities.innerHTML = citiesTable;
     document.getElementById('removable').remove(); //remove loading
     if (datatableCities) {
@@ -38,4 +42,4 @@ function renderCitiesTable(cityTableRows) {
     }
 }
 
-renderCities();
+renderTopTen();

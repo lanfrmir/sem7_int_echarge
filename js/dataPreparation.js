@@ -59,18 +59,8 @@ async function getData() {
     }
 }
 
-async function fetchTableData() {
-    let url = 'https://data.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/status/oicp/ch.bfe.ladestellen-elektromobilitaet.json';
-    try {
-        let res = await fetch(url);
-        return await res.json();
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 async function getTableData() {
-    let data = await fetchTableData();
+    let data = await fetchData('https://data.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/status/oicp/ch.bfe.ladestellen-elektromobilitaet.json');
     let allAvailibilities = [];
 
     for (let i = 0; i < data.EVSEStatuses.length; i++) {
@@ -81,8 +71,7 @@ async function getTableData() {
     }
 
     let mapWithCount = {};
-    allAvailibilities.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; })
-
+    allAvailibilities.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; });
     return mapWithCount;
 }
 
@@ -91,7 +80,6 @@ function createMapForChart(allEntries) {
     let mapWithCount = {};
     allEntries.forEach(function (x) { mapWithCount[x] = (mapWithCount[x] || 0) + 1; });
 
-    console.log(mapWithCount);
     let listWithKeyValue = [];
     for (const [key, value] of Object.entries(mapWithCount)) {
         let y = value / allEntries.length * 100;
