@@ -42,6 +42,7 @@ Date: 16.12.2021
 </head>
 
 <body class="sb-nav-fixed">
+	
 	<!-- Top-Navbar horizontal (dark) -->
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<a class="navbar-brand ps-3" href="index.html">
@@ -130,15 +131,15 @@ Date: 16.12.2021
 		<!-- Content -->
 		<div id="layoutSidenav_content">
 			<div class="container-fluid px-4">
-				<h1 class="mt-4">Home</h1>
-				<p> This website is primarely for public administration. 
-					You see an overview of the approximately 6000 charging stations in Switzerland. 
-					To support your decisions, we have illustrated the most important KPI's in a comprehensible form. </p>
+				<h1 class="mt-4"><span class="text-warning">H</span>ome</h1>
 				<ol class="breadcrumb mb-4">
 					<li class="breadcrumb-item active">Overview</li>
 				</ol>
 				<div class="row">
 					<div class="col-xl-12">
+						<p class="lead my-4 me-5">The map of Switzerland below shows the number of charging stations per Swiss canton. The thinner the blue color, 
+							the more charging stations are available in the corresponding canton. <br />
+							The number is displayed when you move the mouse over the image.</p>
 						<div class="card mb-4">
 							<div class="card-header">
 								<i class="fas fa-chart-area me-1"></i>
@@ -148,10 +149,12 @@ Date: 16.12.2021
 						</div>
 					</div>
 				</div>
+				<p class="lead my-4 me-5">The following table shows the total number of charging stations and connections.<br />
+					Since charging stations can have multiple connections, the number of connections is greater than the number of charging stations themselves.</p>
 				<div class="card mb-4">
 					<div class="card-header">
 						<i class="fas fa-table me-1"></i>
-						Total electric stations
+						Total electric stations & plugs
 					</div>
 					<div class="card-body">
 						<table id="keyNumbers"><img id="keyNumbersRemovable" src="img/loading.gif" alt="Loading"
