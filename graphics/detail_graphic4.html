@@ -1,6 +1,13 @@
+<!--############################
+Website: ECharge (Electric charging stations in Switzerland)
+Version: 1.0
+Data source: https://www.uvek-gis.admin.ch/BFE/diemo/demo-prod.html
+Authors: Mirko Lanfranchi, Ephraim Izgi, Mehmet Pekerman
+Date: 16.12.2021
+###############################-->
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,44 +15,48 @@
     <meta name="description" content="" />
     <meta name="author" content="Int_Group11" />
     <title>ECharge</title>
+
+    <!-- link for Bootstrap, Stylesheet, Favicon -->
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-        crossorigin="anonymous"></script>
 
+    <!-- scripts für Bootstrap, Highcharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/maps/modules/map.js"></script>
-    <!-- <script src="https://code.highcharts.com/maps/highmaps.js"></script> -->
     <script src="https://code.highcharts.com/mapdata/countries/ch/ch-all.js"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-
+    <script src="../js/scripts.js"></script>
     <script src="../js/dataPreparation.js"></script>
     <script src="../js/charts/plugsChart.js"></script>
 </head>
-
 <body class="sb-nav-fixed">
-    <!-- Navbar top -->
+    <!-- Top-Navbar horizontal (dark) -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand ps-3" href="../index.html">
             <img src="../img/logo32.png" alt="logo32.png" class="w-25">
             <span class="text-warning">E</span>Charge
         </a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm ms-auto me-3" id="sidebarToggle" href="#!"><span
-                class="navbar-toggler-icon"></span></button>
+
+        <!-- Sidebar Toggle/Burger on Top-Navbar -->
+        <button class="btn btn-link btn-sm ms-auto me-3" id="sidebarToggle" href="#!"><span class="navbar-toggler-icon"></span></button>
     </nav>
 
-    <!-- Navbar left -->
+    <!-- Left-Navbar vertical with the menus (dark) -->
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
+
+                        <!-- Home menu -->
                         <div class="sb-sidenav-menu-heading">Home</div>
                         <a class="nav-link" href="../index.html">
                             <div class="sb-nav-link-icon">
@@ -53,6 +64,8 @@
                             </div>
                             Overview
                         </a>
+
+                        <!-- Graphics & Tables menus with collapse option -->
                         <div class="sb-sidenav-menu-heading">Graphics</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseGraphics" aria-expanded="false" aria-controls="collapseLayouts">
@@ -90,6 +103,8 @@
                                 <a href="../tables/detail_table2.html" class="nav-link">Statistics</a>
                             </nav>
                         </div>
+
+                        <!-- E-Charge menu -->
                         <div class="sb-sidenav-menu-heading">E-Charge</div>
                         <a class="nav-link" href="../aboutus.html">
                             <div class="sb-nav-link-icon">
@@ -117,12 +132,12 @@
                 </ol>
             </div>
 
-            <!-- Showcase -->
+            <!-- Information on the top -->
             <section class="text-dark ms-5 text-center text-sm-start">
 
             </section>
 
-            <!-- Boxes -->
+            <!-- Graphic -->
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card mb-4">
@@ -130,7 +145,7 @@
                             <i class="fas fa-chart-bar me-1"></i>
                             Accessibility
                         </div>
-                        <div id="plugsChart"><img src="../assets/loading.gif" alt="Loading" width="50" /></div>
+                        <div id="plugsChart"><img src="../img/loading.gif" alt="Loading" width="50" /></div>
                     </div>
                 </div>
             </div>
@@ -146,10 +161,5 @@
             </footer>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script src="../js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 </body>
-
 </html>

@@ -1,153 +1,172 @@
+<!--############################
+Website: ECharge (Electric charging stations in Switzerland)
+Version: 1.0
+Data source: https://www.uvek-gis.admin.ch/BFE/diemo/demo-prod.html
+Authors: Mirko Lanfranchi, Ephraim Izgi, Mehmet Pekerman
+Date: 16.12.2021
+###############################-->
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="Int_Group11" />
-        <title>ECharge</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/style.css" rel="stylesheet" />
-		<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="sb-nav-fixed">      
-		<!-- Navbar top -->
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand ps-3" href="index.html">
-                <img src="img/logo32.png" alt="logo32.png" class="w-25">
-                <span class="text-warning">E</span>Charge
-            </a>
-			<!-- Sidebar Toggle-->
-			<button class="btn btn-link btn-sm ms-auto me-3" id="sidebarToggle" href="#!"><span class="navbar-toggler-icon"></span></button>
-        </nav>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Int_Group11" />
+    <title>ECharge</title>
 
-		<!-- Navbar left -->
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Home</div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon">
-									<i class="fas fa-tachometer-alt"></i>
-								</div>
-                                Overview
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Graphics</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseGraphics" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-									<i class="fas fa-chart-area"></i>
-								</div>
-                                Graphics
-                                <div class="sb-sidenav-collapse-arrow">
-									<i class="fas fa-angle-down"></i>
-								</div>
-                            </a>
-                            <div class="collapse" id="collapseGraphics" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a href="graphics/detail_graphic1.html" class="nav-link">All Swiss Chargers</a>
-                                    <a href="graphics/detail_graphic2.html" class="nav-link">Providers</a>
-                                    <a href="graphics/detail_graphic3.html" class="nav-link">Accessibility</a>
-                                    <a href="graphics/detail_graphic4.html" class="nav-link">Consumptions</a>
-                                </nav>
+    <!-- link for Bootstrap, Stylesheet, Favicon -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+    <!-- scripts für Bootstrap, Highcharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+
+    <!-- Script for Mapbox -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+</head>
+<body class="sb-nav-fixed">
+
+    <!-- Top-Navbar horizontal (dark) -->
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand ps-3" href="index.html">
+            <img src="img/logo32.png" alt="logo32.png" class="w-25">
+            <span class="text-warning">E</span>Charge
+        </a>
+        
+        <!-- Sidebar Toggle/Burger on Top-Navbar -->
+        <button class="btn btn-link btn-sm ms-auto me-3" id="sidebarToggle" href="#!"><span class="navbar-toggler-icon"></span></button>
+    </nav>
+
+    <!-- Left-Navbar vertical with the menus (dark) -->
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+
+                        <!-- Home menu -->
+                        <div class="sb-sidenav-menu-heading">Home</div>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTables" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon">
-									<i class="fas fa-table"></i>
-								</div>
-                                Tables
-                                <div class="sb-sidenav-collapse-arrow">
-									<i class="fas fa-angle-down"></i>
-								</div>
-                            </a>
-							<div class="collapse" id="collapseTables" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a href="tables/detail_table1.html" class="nav-link">All Swiss Chargers</a>
-                                    <a href="tables/detail_table2.html" class="nav-link">Statistics</a>
-                                </nav>
+                            Overview
+                        </a>
+
+                        <!-- Graphics & Tables menus with collapse option -->
+                        <div class="sb-sidenav-menu-heading">Graphics</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseGraphics" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-chart-area"></i>
                             </div>
-                            <div class="sb-sidenav-menu-heading">E-Charge</div>
-                            <a class="nav-link" href="aboutus.html">
-                                <div class="sb-nav-link-icon">
-									<i class="far fa-building"></i>
-								</div>
-                                About Us
-                            </a>
-                            <a class="nav-link" href="contact.html">
-                                <div class="sb-nav-link-icon">
-									<i class="far fa-address-card"></i>
-									</div>
-                                Contact
-                            </a>
+                            Graphics
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapseGraphics" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a href="graphics/detail_graphic1.html" class="nav-link">All Swiss Chargers</a>
+                                <a href="graphics/detail_graphic2.html" class="nav-link">Providers</a>
+                                <a href="graphics/detail_graphic3.html" class="nav-link">Accessibility</a>
+                                <a href="graphics/detail_graphic4.html" class="nav-link">Consumptions</a>
+                            </nav>
                         </div>
-                    </div>
-                </nav>
-            </div>
-
-			<!-- Content -->
-            <div id="layoutSidenav_content">
-
-				<!-- Contact & Map -->
-					<div class="container-fluid px-4">
-						<h1 class="mt-4"><span class="text-warning">E</span>-Charge</h1>
-						<ol class="breadcrumb mb-4">
-							<li class="breadcrumb-item active">Contact Information</li>
-						</ol>						
-						<div class="col-sm text-center">
-							<ul class="list-group list-group-flush lead">
-								<li class="list-group-item">
-									<span class="fw-bold">Main Location:</span> St.-Georgen-Platz 2, 8401 Winterthur
-								</li>
-								<li class="list-group-item">
-									<span class="fw-bold">School:</span> ZHAW School of Management and Law
-								</li>
-								<li class="list-group-item">
-									<span class="fw-bold">Students:</span> Mirko Lanfranchi, Mehmet Pekerman, Ephraim Izgi
-								</li>
-								<li class="list-group-item">
-									<span class="fw-bold">Supervisor:</span> Dr. Mario Gellrich
-								</li>
-							</ul>
-						</div>
-						<div class="container mt-2">
-							<div class="text-center">
-								<div id="map"></div>
-							</div>
-						</div>
-					</div>
-
-
-				<!-- Footer -->
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; by Mirko Lanfranchi, Mehmet Pekerman, Ephraim Izgi</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTables" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            Tables
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapseTables" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a href="tables/detail_table1.html" class="nav-link">All Swiss Chargers</a>
+                                <a href="tables/detail_table2.html" class="nav-link">Statistics</a>
+                            </nav>
                         </div>
+
+                        <!-- E-Charge menu -->
+                        <div class="sb-sidenav-menu-heading">E-Charge</div>
+                        <a class="nav-link" href="aboutus.html">
+                            <div class="sb-nav-link-icon">
+                                <i class="far fa-building"></i>
+                            </div>
+                            About Us
+                        </a>
+                        <a class="nav-link" href="contact.html">
+                            <div class="sb-nav-link-icon">
+                                <i class="far fa-address-card"></i>
+                                </div>
+                            Contact
+                        </a>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </nav>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
 
-		<!-- Script for Mapbox -->
-		<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-		<script>
-			mapboxgl.accessToken = 'pk.eyJ1IjoibWlya29vOTQiLCJhIjoiY2t2M3RqbTZsMTN3azJvb3YyaTFjMnFkMyJ9.iYTifUZSCWsQpjS5IJX57w';
-			var map = new mapboxgl.Map({
-				container: 'map',
-				style: 'mapbox://styles/mapbox/streets-v11',
-				center: [8.726130, 47.502220],
-				zoom: 16.5,
-			});
-		</script>
-    </body>
+        <!-- Content -->
+        <div id="layoutSidenav_content">
+
+            <!-- Contact & Mapbox -->
+            <div class="container-fluid px-4">
+                <h1 class="mt-4"><span class="text-warning">E</span>-Charge</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Contact Information</li>
+                </ol>						
+                <div class="col-sm text-center">
+                    <ul class="list-group list-group-flush lead">
+                        <li class="list-group-item">
+                            <span class="fw-bold">Main Location:</span> St.-Georgen-Platz 2, 8401 Winterthur
+                        </li>
+                        <li class="list-group-item">
+                            <span class="fw-bold">School:</span> ZHAW School of Management and Law
+                        </li>
+                        <li class="list-group-item">
+                            <span class="fw-bold">Students:</span> Mirko Lanfranchi, Mehmet Pekerman, Ephraim Izgi
+                        </li>
+                        <li class="list-group-item">
+                            <span class="fw-bold">Supervisor:</span> Dr. Mario Gellrich
+                        </li>
+                    </ul>
+                </div>
+                <div class="container mt-2">
+                    <div class="text-center">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; by Mirko Lanfranchi, Mehmet Pekerman, Ephraim Izgi</div>
+                    </div>
+                </div>
+            </footer>
+            
+            <!-- Script for Mapbox -->
+            <script>
+                mapboxgl.accessToken = 'pk.eyJ1IjoibWlya29vOTQiLCJhIjoiY2t2M3RqbTZsMTN3azJvb3YyaTFjMnFkMyJ9.iYTifUZSCWsQpjS5IJX57w';
+                var map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    center: [8.726130, 47.502220],
+                    zoom: 16.5,
+                });
+            </script>
+        </div>
+    </div>
+</body>
 </html>
