@@ -19,7 +19,7 @@ function renderTop10Chart(accessibility) {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            type: 'pie'
+            type: 'column'
         },
         title: {
             text: ''
@@ -32,18 +32,21 @@ function renderTop10Chart(accessibility) {
                 valueSuffix: '%'
             }
         },
+        legend: {
+            enabled: false
+        },
         plotOptions: {
-            pie: {
+            series: {
                 allowPointSelect: true,
                 cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    format: '<b>{point.name}</b>: {point.y:.1f} %'
                 }
             }
         },
         series: [{
-            name: 'Accessibility',
+            name: 'Stations',
             colorByPoint: true,
             data: accessibility,
         }]
